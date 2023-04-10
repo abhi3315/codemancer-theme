@@ -8,39 +8,28 @@
  * @since 1.0.0
  */
 
-/**
- * Add theme support.
- */
-function codemancer_theme_setup() {
-	/*
-	 * Load additional block styles.
-	 */
-	$styled_blocks = [ 'quote' ];
-	foreach ( $styled_blocks as $block_name ) {
-		$args = array(
-			'handle' => "codemancer-theme-$block_name",
-			'src'    => get_theme_file_uri( "assets/css/blocks/$block_name.css" ),
-			'path'   => get_theme_file_path( "assets/css/blocks/$block_name.css" ),
-		);
-		// Replace the "core" prefix if you are styling blocks from plugins.
-		wp_enqueue_block_style( "core/$block_name", $args );
-	}
+if ( ! defined( 'CODEMANCER_THEME_VERSION' ) ) {
+	define( 'CODEMANCER_THEME_VERSION', wp_get_theme()->get( 'Version' ) );
 }
-add_action( 'after_setup_theme', 'codemancer_theme_setup' );
+
+if ( ! defined( 'CODEMANCER_THEME_TEMP_DIR' ) ) {
+	define( 'CODEMANCER_THEME_TEMP_DIR', untrailingslashit( get_template_directory() ) );
+}
+
+if ( ! defined( 'CODEMANCER_THEME_BUILD_URI' ) ) {
+	define( 'CODEMANCER_THEME_BUILD_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build' );
+}
+
+if ( ! defined( 'CODEMANCER_THEME_BUILD_DIR' ) ) {
+	define( 'CODEMANCER_THEME_BUILD_DIR', untrailingslashit( get_template_directory() ) . '/assets/build' );
+}
 
 /**
- * Enqueue the CSS files.
- *
- * @since 1.0.0
- *
- * @return void
+ * Load the autoloader.
  */
-function codemancer_theme_styles() {
-	wp_enqueue_style(
-		'codemancer-theme-style',
-		get_stylesheet_uri(),
-		[],
-		wp_get_theme()->get( 'Version' )
-	);
-}
-add_action( 'wp_enqueue_scripts', 'codemancer_theme_styles' );
+require_once CODEMANCER_THEME_TEMP_DIR . '/vendor/autoload.php';
+
+/**
+ * Load the theme.
+ */
+Codemancer_Theme\Codemancer_Theme::get_instance();

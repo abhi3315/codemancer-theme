@@ -1,0 +1,17 @@
+{
+    "name": "abhi3315/codemancer",
+    "description": "A theme for the codemancer.in website.",
+    "license": "2.0-or-later",
+    "autoload": {
+		"classmap": [
+			"inc/"
+		]
+    },
+    "authors": [
+        {
+            "name": "Abhishek Sharma",
+            "email": "abhishek3.dev@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -17,12 +17,12 @@
 				},
 				{
 					"slug": "primary",
-					"color": "#0073aa",
+					"color": "#8C52FF",
 					"name": "Primary"
 				},
 				{
 					"slug": "secondary",
-					"color": "#00a0d2",
+					"color": "#FFA500",
 					"name": "Secondary"
 				},
 				{

@@ -17,11 +17,11 @@ if ( ! defined( 'CODEMANCER_THEME_TEMP_DIR' ) ) {
 }
 
 if ( ! defined( 'CODEMANCER_THEME_BUILD_URI' ) ) {
-	define( 'CODEMANCER_THEME_BUILD_URI', untrailingslashit( get_template_directory_uri() ) . '/assets/build' );
+	define( 'CODEMANCER_THEME_BUILD_URI', untrailingslashit( get_template_directory_uri() ) . '/build' );
 }
 
 if ( ! defined( 'CODEMANCER_THEME_BUILD_DIR' ) ) {
-	define( 'CODEMANCER_THEME_BUILD_DIR', untrailingslashit( get_template_directory() ) . '/assets/build' );
+	define( 'CODEMANCER_THEME_BUILD_DIR', untrailingslashit( get_template_directory() ) . '/build' );
 }
 
 /**

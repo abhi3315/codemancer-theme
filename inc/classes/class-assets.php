@@ -1,6 +1,6 @@
 <?php
 /**
- * Theme bootstrap file.
+ * Enqueue assets.
  *
  * @package codemancer-theme
  */

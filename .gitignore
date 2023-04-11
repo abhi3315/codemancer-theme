@@ -18,7 +18,7 @@
 .wp-env.override.json
 
 # Build
-assets/build/
+build
 
 # PHPCS
 phpcs.xml

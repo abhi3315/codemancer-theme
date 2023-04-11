@@ -25,6 +25,7 @@ class Codemancer_Theme {
 	protected function __construct() {
 		// Instantiate classes.
 		Assets::get_instance();
+		Blocks::get_instance();
 
 		// Setup hooks.
 		$this->setup_hooks();

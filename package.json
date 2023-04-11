@@ -42,7 +42,7 @@
 	},
 	"scripts": {
 		"build:dev": "cross-env NODE_ENV=development npm-run-all 'build:!(dev|prod)'",
-		"build:js": "wp-scripts build",
+		"build:js": "wp-scripts build --webpack-src-dir='./assets/src'",
 		"build:prod": "cross-env NODE_ENV=production npm-run-all 'build:!(dev|prod)'",
 		"lint:all": "npm-run-all --parallel lint:*",
 		"lint:css:fix": "npm run lint:css -- --fix ./assets/src",
@@ -54,7 +54,10 @@
 		"lint:php:fix": "./bin/phpcbf.sh",
 		"lint:php": "vendor/bin/phpcs",
 		"lint:staged": "lint-staged",
-		"start": "wp-scripts start",
+		"start": "wp-scripts start --webpack-src-dir='./assets/src'",
 		"prepare": "husky install"
+	},
+	"dependencies": {
+		"@wordpress/dom-ready": "^3.30.0"
 	}
 }

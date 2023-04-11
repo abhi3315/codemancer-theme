@@ -47,7 +47,8 @@ class Assets {
 	 */
 	public function register_assets() {
 
-		$this->register_script( 'core-navigation', 'js/core-navigation.js' );
+		$this->register_script( 'core-navigation', 'js/main.js' );
+		$this->register_script( 'main-script', 'js/core-navigation.js' );
 		$this->register_style( 'core-navigation', 'css/core-navigation.css' );
 		$this->register_style( 'codemancer-theme-styles', 'css/styles.css' );
 	}

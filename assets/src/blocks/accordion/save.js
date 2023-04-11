@@ -20,7 +20,7 @@ export default function save({ attributes }) {
 				<div className="accordion__item" key={item.id}>
 					<h3 className="accordion__title">
 						{item.title}
-						<span className="dashicons dashicons-plus"></span>
+						<span className="dashicons dashicons-plus accordion__icon"></span>
 					</h3>
 					<div className="accordion__content">{item.content}</div>
 				</div>

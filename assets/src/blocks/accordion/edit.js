@@ -9,7 +9,6 @@ import { useState, useEffect } from '@wordpress/element';
  * Internal dependencies
  */
 import AccordionItem from './accordion-item';
-import Save from './save';
 import './editor.scss';
 
 /**
@@ -18,16 +17,14 @@ import './editor.scss';
  * @param {Object}   props               - Component props.
  * @param {Object}   props.attributes    - Block attributes.
  * @param {Function} props.setAttributes - Set block attributes.
- * @param {boolean}  props.isSelected    - Is block selected.
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({ attributes, setAttributes, isSelected }) {
+export default function Edit({ attributes, setAttributes }) {
 	const { accordionItems } = attributes;
 
 	// Accordion block
 	const [accordion, setAccordion] = useState(accordionItems);
-	const [accordionId, setAccordionId] = useState(0);
 
 	// Add accordion
 	const addAccordion = () => {
@@ -36,10 +33,9 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 			{
 				title: '',
 				content: '',
-				id: accordionId,
+				id: Math.floor(Math.random() * 10000),
 			},
 		]);
-		setAccordionId(accordionId + 1);
 	};
 
 	// Remove accordion
@@ -66,30 +62,21 @@ export default function Edit({ attributes, setAttributes, isSelected }) {
 
 	return (
 		<div {...useBlockProps()}>
-			{isSelected ? (
-				<>
-					<div className="accordion">
-						{accordion.map((item) => (
-							<AccordionItem
-								key={item.id}
-								id={item.id}
-								title={item.title}
-								content={item.content}
-								removeAccordion={removeAccordion}
-								editAccordion={editAccordion}
-							/>
-						))}
-					</div>
-					<button
-						className="accordion__add-btn"
-						onClick={addAccordion}
-					>
-						{__('Add New Item', 'codemancer-theme')}
-					</button>
-				</>
-			) : (
-				<Save attributes={attributes} />
-			)}
+			<div className="accordion">
+				{accordion.map((item) => (
+					<AccordionItem
+						key={item.id}
+						id={item.id}
+						title={item.title}
+						content={item.content}
+						removeAccordion={removeAccordion}
+						editAccordion={editAccordion}
+					/>
+				))}
+			</div>
+			<button className="accordion__add-btn" onClick={addAccordion}>
+				{__('Add New Item', 'codemancer-theme')}
+			</button>
 		</div>
 	);
 }

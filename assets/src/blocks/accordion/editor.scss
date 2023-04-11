@@ -22,6 +22,14 @@
 		padding: 0 15px;
 	}
 
+	&__content {
+		height: auto !important;
+	}
+
+	&__title {
+		justify-content: unset !important;
+	}
+
 	&__remove-btn {
 		background: #fff;
 		border: 1px solid #ddd;

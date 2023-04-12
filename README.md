@@ -24,7 +24,12 @@ Codemancer Theme comes with a range of features to help you build a modern, user
 - Customizable blog page: The theme comes with a customizable blog page template that allows you to display your blog posts in a clean, modern layout.
 - Responsive design: Codemancer Theme is designed to be fully responsive, ensuring that your website looks great on all devices.
 - Custom Gutenberg Block: Registered a custom Gutenberg block to display the accordion. The custom block is used to create the FAQs on the site. Please check [here](https://abhish3k.tech/faqs/).
+  
+  ![GIF Recording 2023-04-12 at 4 15 03 PM (1)](https://user-images.githubusercontent.com/43412958/231435240-d5f713bb-da11-4b68-9cba-084c35abcaa5.gif)
+
 - Meta Block Fields: Added custom meta block fields in the `post` gutenberg sidebar. This block includes the fields to set a post as featured and add external source urls.
+  
+  ![GIF Recording 2023-04-12 at 4 20 43 PM](https://user-images.githubusercontent.com/43412958/231436259-310fa0bf-d4eb-4b1e-ac25-33a18aca3c9a.gif)
 
 ## Customization
 

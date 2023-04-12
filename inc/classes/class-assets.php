@@ -188,6 +188,7 @@ class Assets {
 	 */
 	public function enqueue_assets() {
 		wp_enqueue_style( 'codemancer-theme-styles' );
+		wp_enqueue_style( 'dashicons' );
 	}
 
 }

@@ -11,8 +11,21 @@ import {
 	TextControl,
 	Button,
 } from '@wordpress/components';
+import { useEffect, useState } from '@wordpress/element';
 
 const PostMetaBlock = ({ postType, postMeta, setPostMeta }) => {
+	const [featuredPost, setFeaturedPost] = useState(postMeta.is_featured);
+	const [sourceUrls, setSourceUrls] = useState(postMeta.source_urls);
+
+	useEffect(() => {
+		setPostMeta({
+			...postMeta,
+			is_featured: featuredPost,
+			source_urls: sourceUrls,
+		});
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [featuredPost, sourceUrls]);
+
 	if ('post' !== postType) return null; // Will only render component for post type 'post'
 
 	return (
@@ -24,46 +37,47 @@ const PostMetaBlock = ({ postType, postMeta, setPostMeta }) => {
 			<PanelRow>
 				<ToggleControl
 					label={__('Featured post', 'codemancer-theme')}
-					onChange={(value) => setPostMeta({ is_featured: value })}
-					checked={postMeta.is_featured || false}
+					onChange={() => setFeaturedPost((prev) => !prev)}
+					checked={featuredPost}
 				/>
 			</PanelRow>
-			{postMeta.source_urls &&
-				postMeta.source_urls.map((sourceUrl, index) => (
-					<PanelRow key={index}>
-						<TextControl
-							placeholder={
-								__('Source URL', 'codemancer-theme') +
-								' ' +
-								(index + 1)
-							}
-							onChange={(value) => {
-								const newSourceUrls = postMeta.source_urls;
-								newSourceUrls[index] = value;
-								setPostMeta({ source_urls: newSourceUrls });
-							}}
-							value={sourceUrl}
-						/>
-						<Button
-							className="is-destructive"
-							onClick={() => {
-								const newSourceUrls = postMeta.source_urls;
-								newSourceUrls.splice(index, 1);
-								setPostMeta({ source_urls: newSourceUrls });
-							}}
-						>
-							{__('Remove', 'codemancer-theme')}
-						</Button>
-					</PanelRow>
-				))}
+			{sourceUrls?.map((sourceUrl, index) => (
+				<PanelRow key={index}>
+					<TextControl
+						placeholder={
+							__('Source URL', 'codemancer-theme') +
+							' ' +
+							(index + 1)
+						}
+						onChange={(value) =>
+							setSourceUrls((prevUrls) => {
+								const newUrls = [...prevUrls];
+								newUrls[index] = value;
+								return newUrls;
+							})
+						}
+						value={sourceUrl}
+					/>
+					<Button
+						className="is-destructive"
+						onClick={() =>
+							setSourceUrls((prevUrls) => {
+								const newUrls = [...prevUrls];
+								newUrls.splice(index, 1);
+								return newUrls;
+							})
+						}
+					>
+						{__('Remove', 'codemancer-theme')}
+					</Button>
+				</PanelRow>
+			))}
 			<PanelRow>
 				<Button
 					className="is-secondary"
-					onClick={() => {
-						const newSourceUrls = postMeta.source_urls || [];
-						newSourceUrls.push('');
-						setPostMeta({ source_urls: newSourceUrls });
-					}}
+					onClick={() =>
+						setSourceUrls((prevUrls) => [...prevUrls, ''])
+					}
 				>
 					{__('Add source URL', 'codemancer-theme')}
 				</Button>

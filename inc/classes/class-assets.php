@@ -35,6 +35,7 @@ class Assets {
 	public function setup_hooks() {
 		add_action( 'wp_enqueue_scripts', [ $this, 'register_assets' ] );
 		add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_assets' ] );
+		add_action( 'enqueue_block_editor_assets', [ $this, 'enqueue_block_editor_assets' ] );
 		add_filter( 'render_block', [ $this, 'enqueue_block_specific_assets' ], 10, 2 );
 	}
 
@@ -51,6 +52,23 @@ class Assets {
 		$this->register_script( 'main-script', 'js/core-navigation.js' );
 		$this->register_style( 'core-navigation', 'css/core-navigation.css' );
 		$this->register_style( 'codemancer-theme-styles', 'css/styles.css' );
+	}
+
+	/**
+	 * Enqueue block editor assets.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @action enqueue_block_editor_assets
+	 */
+	public function enqueue_block_editor_assets() {
+		wp_enqueue_script(
+			'codemancer-theme-block-editor',
+			CODEMANCER_THEME_BUILD_URI . '/js/meta-blocks.js',
+			$this->get_asset_meta( 'js/meta-blocks.js' )['dependencies'],
+			$this->get_asset_meta( 'js/meta-blocks.js' )['version'],
+			false
+		);
 	}
 
 	/**

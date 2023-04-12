@@ -15,7 +15,7 @@ const defaultConfig = require('@wordpress/scripts/config/webpack.config');
 const sharedConfig = {
 	...defaultConfig,
 	output: {
-		path: path.resolve(process.cwd(), 'assets', 'build', 'js'),
+		path: path.resolve(process.cwd(), 'build', 'js'),
 		filename: '[name].js',
 		chunkFilename: '[name].js',
 	},
